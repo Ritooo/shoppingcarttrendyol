@@ -53,7 +53,7 @@ public class ShoppingCart implements IShoppingCart {
      * @param category kategoriye göre toplam tutar
      */
     public double getTotalAmountByCategory(Category category) {
-
+        //girilen kategori üst kategori olabilir alt kategorileri de dolaşarak ilgili tutarlara ulaşıyoruz******
         double total = 0;
         if (category.getChilds() != null) {
             for (Category child : category.getChilds()) {
@@ -73,6 +73,7 @@ public class ShoppingCart implements IShoppingCart {
      * @param category kategoriye göre toplam adet
      */
     public int getTotalProductByCategory(Category category) {
+        //girilen kategori üst kategori olabilir alt kategorileri de dolaşarak ilgili toplama ulaşıyoruz******
         int total = 0;
         if (category.getChilds() != null) {
             for (Category child : category.getChilds()) {
