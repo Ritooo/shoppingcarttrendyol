@@ -19,8 +19,12 @@ public class ShoppingcartappApplication implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments args) throws Exception {
 
-           /******** Test Case 1 *******/
+        testCase1();
+        testCase2();
 
+    }
+
+    public void testCase1() {
         //Create Category
         Category c1 = new Category("food");
 
@@ -49,20 +53,19 @@ public class ShoppingcartappApplication implements ApplicationRunner {
         double discount3 = campaign3.calculateCartDiscount(shoppingCart);
         //Apply Discounts
         shoppingCart.applyDiscounts(discount1, discount2, discount3);
-        //Apply discount1
+        //Apply Coupon
         shoppingCart.applyCoupon(coupon1);
 
         DeliveryCostCalculator d = new DeliveryCostCalculator(1, 2, 2.99);
         d.calculateFor(shoppingCart);
 
         shoppingCart.print();
+    }
 
-
-        /******** Test Case 1 *******/
-
+    public void testCase2() {
 
         //Create Category
-       /* Category c1 = new Category("Bilgisayar");
+        Category c1 = new Category("Bilgisayar");
         Category c1_1 = new Category("İşlemci", c1);
         Category c1_1_1 = new Category("intel", c1_1);
         Category c1_1_2 = new Category("Amd", c1_1);
@@ -102,13 +105,16 @@ public class ShoppingcartappApplication implements ApplicationRunner {
 
         //Apply Discounts
         shoppingCart.applyDiscounts(discount1, discount2);
-        //Apply discount1
+
+        //Apply Coupon
         shoppingCart.applyCoupon(coupon1);
 
         DeliveryCostCalculator d = new DeliveryCostCalculator(1, 2, 2.99);
         d.calculateFor(shoppingCart);
 
         shoppingCart.print();
-*/
+
     }
+
+
 }

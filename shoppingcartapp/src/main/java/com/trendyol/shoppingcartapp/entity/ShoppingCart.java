@@ -15,8 +15,13 @@ public class ShoppingCart implements IShoppingCart {
         this.shoppingCartItems = new ArrayList<>();
     }
 
+    /**
+     * @param p    product nesnemizi yollarak Shopping cart item oluşturuyoruz.
+     * @param unit girilen adet bilgisi
+     */
     @Override
     public void addItem(Product p, int unit) {
+        //Aynı üründen iki tane gelirse ürünün adetine ekleme yapıyoruz.
         if (shoppingCartItems.stream().anyMatch(q -> q.getProduct() == p)) {
             ShoppingCartItem shoppingCartItem = this.shoppingCartItems.stream().filter(q -> q.getProduct() == p).findFirst().get();
             shoppingCartItem.setUnit(shoppingCartItem.getUnit() + unit);
@@ -26,6 +31,9 @@ public class ShoppingCart implements IShoppingCart {
         }
     }
 
+    /**
+     * sepetteki toplam tutar
+     */
     public double getTotalAmount() {
         double total = 0;
         for (ShoppingCartItem item : this.shoppingCartItems) {
@@ -34,10 +42,16 @@ public class ShoppingCart implements IShoppingCart {
         return total;
     }
 
+    /**
+     * sepetteki toplam ürün sayısı
+     */
     public int getNUmberOfProducts() {
         return this.shoppingCartItems.stream().mapToInt(q -> q.getUnit()).sum();
     }
 
+    /**
+     * @param category kategoriye göre toplam tutar
+     */
     public double getTotalAmountByCategory(Category category) {
 
         double total = 0;
@@ -55,6 +69,9 @@ public class ShoppingCart implements IShoppingCart {
         return total;
     }
 
+    /**
+     * @param category kategoriye göre toplam adet
+     */
     public int getTotalProductByCategory(Category category) {
         int total = 0;
         if (category.getChilds() != null) {
@@ -73,6 +90,9 @@ public class ShoppingCart implements IShoppingCart {
     }
 
 
+    /**
+     * @param discounts maliyet hesaplaması
+     */
     @Override
     public void applyDiscounts(double... discounts) {
         for (double item : discounts) {
@@ -81,6 +101,9 @@ public class ShoppingCart implements IShoppingCart {
         }
     }
 
+    /**
+     * @param coupon sisteme girilen kupona göre maliyet hesaplaması
+     */
     @Override
     public void applyCoupon(Coupon coupon) {
         double totalAmount = this.getTotalAmount();
@@ -100,16 +123,25 @@ public class ShoppingCart implements IShoppingCart {
     }
 
 
+    /**
+     * indirimlerden sonraki toplam tutar
+     */
     @Override
     public double getTotalAmountAfterDiscounts() {
-        return this.campaignDiscount + this.couponDiscount;
+        return this.getTotalAmount() - (this.campaignDiscount + this.couponDiscount);
     }
 
+    /**
+     * Kupona göre indirim
+     */
     @Override
     public double getCouponDiscounts() {
         return this.couponDiscount;
     }
 
+    /**
+     * Kampanyaya göre indirim
+     */
     @Override
     public double getCampaignDiscounts() {
         return this.campaignDiscount;

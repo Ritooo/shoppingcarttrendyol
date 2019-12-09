@@ -33,6 +33,9 @@ public class Category {
 
     List<Campaign> campaigns = new ArrayList<>();
 
+    /**
+     * @param category İlgili category nesnesine ait child kategorileri ekliyoruz.
+     */
     public void addChild(Category category) {
         if (this.childs == null)
             this.childs = new ArrayList<>();

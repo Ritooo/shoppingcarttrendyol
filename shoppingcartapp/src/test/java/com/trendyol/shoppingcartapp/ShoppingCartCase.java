@@ -47,36 +47,43 @@ class ShoppingCartCase {
     @Test
     @DisplayName("campaign 1 discount")
     void campaignTest1() {
+
         shoppingCart.addItem(p1, 3);
         shoppingCart.addItem(p2, 1);
 
         double discount1 = campaign1.calculateCartDiscount(shoppingCart);
+
         assertEquals(discount1, 90);
     }
 
     @Test
     @DisplayName("campaign 2 discount")
     void campaignTest2() {
+
         shoppingCart.addItem(p1, 3);
         shoppingCart.addItem(p2, 1);
 
         double discount1 = campaign2.calculateCartDiscount(shoppingCart);
+
         assertEquals(discount1, 0);
     }
 
     @Test
     @DisplayName("campaign 3 discount")
     void campaignTest3() {
+
         shoppingCart.addItem(p1, 3);
         shoppingCart.addItem(p2, 1);
 
         double discount1 = campaign3.calculateCartDiscount(shoppingCart);
+
         assertEquals(discount1, 0);
     }
 
     @Test
     @DisplayName("campaign all")
     void campaignTestAll() {
+
         shoppingCart.addItem(p1, 3);
         shoppingCart.addItem(p2, 1);
 
@@ -92,6 +99,7 @@ class ShoppingCartCase {
         shoppingCart.applyDiscounts(discount1, discount2, discount3);
 
         double campaignDiscount = shoppingCart.getCampaignDiscount();
+
         assertEquals(campaignDiscount, 90);
 
     }
@@ -99,12 +107,14 @@ class ShoppingCartCase {
     @Test
     @DisplayName("coupon")
     void couponTest() {
+
         shoppingCart.addItem(p1, 3);
         shoppingCart.addItem(p2, 1);
 
         shoppingCart.applyCoupon(coupon1);
 
         assertEquals(coupon1.getDiscount() > 0, true);
+
     }
 
     @Test
@@ -112,6 +122,7 @@ class ShoppingCartCase {
     void deliveryCost() {
         shoppingCart.addItem(p1, 3);
         shoppingCart.addItem(p2, 1);
+
         double discount1 = campaign1.calculateCartDiscount(shoppingCart);
 
 
@@ -122,6 +133,7 @@ class ShoppingCartCase {
 
 
         shoppingCart.applyDiscounts(discount1, discount2, discount3);
+
         shoppingCart.applyCoupon(coupon1);
 
         double v = deliveryCostCalculator.calculateFor(shoppingCart);

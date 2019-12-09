@@ -49,6 +49,9 @@ public class Campaign implements ICampaign {
         this.discountType = discountType;
     }
 
+    /**
+     * @param shoppingCart Shopping Cart nesnemizi bu methoda gönderip indirimlerimizi hesaplayıp geriye double tipinde değer dönüyoruz.
+     */
     public double calculateCartDiscount(ShoppingCart shoppingCart) {
         double calculatedDiscount = 0;
 

@@ -39,6 +39,11 @@ public class DeliveryCostCalculator implements IDeliveryCostCalculator {
         this.fixedCost = fixedCost;
     }
 
+
+
+    /**
+     * @param cart Shopping Cart nesnemizi bu methoda gönderip teslimat maliyetini hesaplıyoruz.
+     */
     @Override
     public double calculateFor(ShoppingCart cart) {
         double numberOfDeliveries = cart.getShoppingCartItems().stream().count();
